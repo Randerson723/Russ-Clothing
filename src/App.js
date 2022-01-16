@@ -14,11 +14,12 @@ import  CheckoutPage  from './views/checkout/checkout.component.jsx';
 
 
 
+
 class App extends React.Component {
   
 
   unsubscribeFromAuth = null;
-
+//Declaring the property to log out, then beinning the code to log in
   componentDidMount() {
     const { setCurrentUser } = this.props;
 
@@ -37,13 +38,14 @@ class App extends React.Component {
         
       }
       setCurrentUser( userAuth );
+      
     })
   }
 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
-  
+  //logging the user out
   render() {
     return (
       <div>
@@ -68,11 +70,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector ({
-  setCurrentUser: selectCurrentUser
+  setCurrentUser: selectCurrentUser,
+ 
 })
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
